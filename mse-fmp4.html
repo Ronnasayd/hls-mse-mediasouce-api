@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <video width="700" height="400" id="video" controls autoplay></video>
+</body>
+
+<script>
+    var video = document.querySelector('video');
+    var mediaSource = new MediaSource();
+    video.src = window.URL.createObjectURL(mediaSource);
+    var sourceBuffer;
+    var contador = 0;
+    var mimeType = 'video/mp4; codecs="avc1.640028, mp4a.40.2"'
+    // var mimeType = 'video/mp4; codecs="avc1.4d401f, mp4a.40.2, mp4a.40.2"'
+
+
+
+    mediaSource.addEventListener('sourceopen', function (e) {
+        sourceBuffer = mediaSource.addSourceBuffer(mimeType);
+
+        sourceBuffer.addEventListener('updateend', function (e) {
+            if (contador == 10) {
+                if (!sourceBuffer.updating && mediaSource.readyState === 'open') {
+                    mediaSource.endOfStream();
+                }
+            }
+        });
+
+    }, false);
+
+
+    var worker = new Worker('get.js')
+    var list_of_files = [
+        'files/720p.mp4',
+        'files/720p_000.m4s',
+        'files/720p_001.m4s',
+        'files/720p_002.m4s',
+        'files/720p_003.m4s',
+        'files/720p_004.m4s',
+        'files/720p_005.m4s',
+        'files/720p_006.m4s',
+        'files/720p_007.m4s',
+        'files/720p_008.m4s',
+    ]
+    var reader = new FileReader();
+    i = 0
+    for (element of list_of_files) {
+        i++
+        setTimeout(function (element) {
+            worker.postMessage(element)
+        }, 200 * i, element)
+
+    }
+
+    worker.addEventListener('message', function (e) {
+        contador++
+        if (!sourceBuffer.updating && mediaSource.readyState == 'open') {
+            sourceBuffer.appendBuffer(new Uint8Array(e.data.array));
+            console.table(sourceBuffer)
+            // console.table(mediaSource)
+        }
+
+    })
+
+
+</script>
+
+
+
+
+
+</html>
