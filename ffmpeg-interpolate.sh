@@ -1,0 +1,1 @@
+ffmpeg -i source.mp4 -filter:v minterpolate -r 120 result.mp4
