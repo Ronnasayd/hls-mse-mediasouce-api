@@ -49,41 +49,41 @@ audioFileReader.onload = (e) => {
 };
 
 const videoFiles = [
-  "/video/avc1/init.mp4",
-  "/video/avc1/seg-1.m4s",
-  "/video/avc1/seg-2.m4s",
-  "/video/avc1/seg-3.m4s",
-  "/video/avc1/seg-4.m4s",
-  "/video/avc1/seg-5.m4s",
-  "/video/avc1/seg-6.m4s",
-  "/video/avc1/seg-7.m4s",
-  "/video/avc1/seg-8.m4s",
-  "/video/avc1/seg-9.m4s",
-  "/video/avc1/seg-10.m4s",
-  "/video/avc1/seg-11.m4s",
-  "/video/avc1/seg-12.m4s",
-  "/video/avc1/seg-13.m4s",
-  "/video/avc1/seg-14.m4s",
-  "/video/avc1/seg-15.m4s",
+  "/output/video/avc1/1/init.mp4",
+  "/output/video/avc1/1/seg-1.m4s",
+  "/output/video/avc1/1/seg-2.m4s",
+  "/output/video/avc1/1/seg-3.m4s",
+  "/output/video/avc1/1/seg-4.m4s",
+  "/output/video/avc1/1/seg-5.m4s",
+  "/output/video/avc1/1/seg-6.m4s",
+  "/output/video/avc1/1/seg-7.m4s",
+  "/output/video/avc1/1/seg-8.m4s",
+  "/output/video/avc1/1/seg-9.m4s",
+  "/output/video/avc1/1/seg-10.m4s",
+  "/output/video/avc1/1/seg-11.m4s",
+  "/output/video/avc1/1/seg-12.m4s",
+  "/output/video/avc1/1/seg-13.m4s",
+  "/output/video/avc1/1/seg-14.m4s",
+  "/output/video/avc1/1/seg-15.m4s",
 ];
 
 const audioFiles = [
-  "/audio/und/mp4a/init.mp4",
-  "/audio/und/mp4a/seg-1.m4s",
-  "/audio/und/mp4a/seg-2.m4s",
-  "/audio/und/mp4a/seg-3.m4s",
-  "/audio/und/mp4a/seg-4.m4s",
-  "/audio/und/mp4a/seg-5.m4s",
-  "/audio/und/mp4a/seg-6.m4s",
-  "/audio/und/mp4a/seg-7.m4s",
-  "/audio/und/mp4a/seg-8.m4s",
-  "/audio/und/mp4a/seg-9.m4s",
-  "/audio/und/mp4a/seg-10.m4s",
-  "/audio/und/mp4a/seg-11.m4s",
-  "/audio/und/mp4a/seg-12.m4s",
-  "/audio/und/mp4a/seg-13.m4s",
-  "/audio/und/mp4a/seg-14.m4s",
-  "/audio/und/mp4a/seg-15.m4s",
+  "/output/audio/und/mp4a/init.mp4",
+  "/output/audio/und/mp4a/seg-1.m4s",
+  "/output/audio/und/mp4a/seg-2.m4s",
+  "/output/audio/und/mp4a/seg-3.m4s",
+  "/output/audio/und/mp4a/seg-4.m4s",
+  "/output/audio/und/mp4a/seg-5.m4s",
+  "/output/audio/und/mp4a/seg-6.m4s",
+  "/output/audio/und/mp4a/seg-7.m4s",
+  "/output/audio/und/mp4a/seg-8.m4s",
+  "/output/audio/und/mp4a/seg-9.m4s",
+  "/output/audio/und/mp4a/seg-10.m4s",
+  "/output/audio/und/mp4a/seg-11.m4s",
+  "/output/audio/und/mp4a/seg-12.m4s",
+  "/output/audio/und/mp4a/seg-13.m4s",
+  "/output/audio/und/mp4a/seg-14.m4s",
+  "/output/audio/und/mp4a/seg-15.m4s",
 ];
 
 videoFiles.forEach((file, index) => {
@@ -94,6 +94,7 @@ videoFiles.forEach((file, index) => {
 });
 
 audioFiles.forEach((file, index) => {
+  console.log(file);
   setTimeout(async () => {
     const data = await (await fetch(file)).blob();
     audioFileReader.readAsArrayBuffer(data);

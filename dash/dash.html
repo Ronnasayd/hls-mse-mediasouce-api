@@ -10,9 +10,10 @@
     <script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script>
       (function () {
-        var url = "/stream.mpd";
+        var url = "output/stream.mpd";
         var player = dashjs.MediaPlayer().create();
         player.initialize(document.querySelector("#videoplayer"), url, true);
+        console.log(player);
       })();
     </script>
   </body>
